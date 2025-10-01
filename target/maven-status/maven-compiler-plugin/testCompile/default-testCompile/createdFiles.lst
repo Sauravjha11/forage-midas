@@ -1,0 +1,3 @@
+com\example\KafkaIntegrationTest.class
+com\example\KafkaIntegrationTest$TestKafkaConsumer.class
+com\example\TransactionStoreTest.class
