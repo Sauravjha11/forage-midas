@@ -1,5 +1,7 @@
 # 🏦 JP Morgan MIDAS Project
 
+*Last updated: October 1, 2025*
+
 ## 📋 Table of Contents
 - [Overview](#overview)
 - [What is MIDAS?](#what-is-midas)
