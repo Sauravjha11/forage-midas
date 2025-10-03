@@ -111,8 +111,16 @@ forage-midas/
 - **Kafka Integration**: Real-time message processing with JSON deserialization
 - **REST API**: Complete CRUD operations for transaction management
 
-### 🛠️ **Advanced Debugging Capabilities**
+### �️ **H2 Database Integration** ⭐ **NEW!**
+- **User Entity**: JPA entity with balance management and transaction validation
+- **TransactionRecord Entity**: Complete audit trail with many-to-one relationships
+- **Transaction Validation Service**: Full validation logic (sender exists, recipient exists, sufficient balance)
+- **Repository Layer**: UserRepository and TransactionRecordRepository with custom queries
+- **Kafka Consumer**: ValidatingTransactionListener for real-time transaction processing
+
+### �🛠️ **Advanced Debugging Capabilities**
 - **TaskTwoTests**: Specialized tests for capturing first four transaction amounts
+- **TaskThreeTests**: H2 database debugging for waldorf user balance analysis ⭐ **NEW!**
 - **TransactionDebugger**: Comprehensive utility for transaction analysis and monitoring
 - **Real-time Monitoring**: Live transaction amount capture and validation
 - **Statistical Analysis**: Transaction summaries with totals, averages, min/max values
@@ -120,6 +128,7 @@ forage-midas/
 ### 🧪 **Comprehensive Testing Suite**
 - **Unit Tests**: 6 passing tests for TransactionStore functionality
 - **Integration Tests**: Kafka message processing with Testcontainers
+- **Database Tests**: H2 integration tests with real transaction validation ⭐ **NEW!**
 - **Debugging Tests**: 4 specialized tests for transaction amount capture
 - **Scenario Testing**: Edge cases, empty stores, incomplete datasets
 
@@ -127,6 +136,7 @@ forage-midas/
 - **First Four Capture**: Multiple implementations of `getAll().subList(0,4)` pattern
 - **Amount Validation**: Comparison against expected transaction amounts
 - **Edge Case Handling**: Support for 0, 1, 2, 3, 4+ transactions
+- **Database Debugging**: waldorf user balance = 850 (rounded down) ⭐ **NEW!**
 - **Pattern Demonstrations**: ApplicationContext bean access patterns
 
 ---
@@ -212,9 +222,10 @@ forage-midas/
 
 ### **Test Suite Overview:**
 ```bash
-Tests run: 16, Failures: 0, Errors: 0, Skipped: 1
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 1
 
 ✅ TaskTwoTests: 4 tests - Core debugging functionality
+✅ TaskThreeTestsSimple: 2 tests - H2 database transaction validation ⭐ NEW!
 ✅ TransactionStoreTest: 6 tests - Foundation testing  
 ✅ TransactionDebuggerTest: 5 tests - Utility testing
 ✅ ComprehensiveTaskTwoDemo: 2 tests - Scenario coverage
@@ -233,6 +244,9 @@ Tests run: 16, Failures: 0, Errors: 0, Skipped: 1
 ```bash
 # Core debugging tests
 ./mvnw test -Dtest=TaskTwoTests
+
+# H2 database transaction validation tests ⭐ NEW!
+./mvnw test -Dtest=TaskThreeTestsSimple
 
 # Transaction storage tests  
 ./mvnw test -Dtest=TransactionStoreTest
@@ -257,6 +271,17 @@ Transaction 2: ID=TXN-002, Amount=250.50, Currency=USD
 Transaction 3: ID=TXN-003, Amount=75.25, Currency=USD
 Transaction 4: ID=TXN-004, Amount=500.00, Currency=USD
 Validation PASSED - first four transactions captured correctly
+```
+
+### **H2 Database Test Results:** ⭐ **NEW!**
+```
+=== WALDORF BALANCE DEBUG RESULTS ===
+Initial balance: $1000.00
+Expected balance: $850.00
+Final balance: $850.00
+Successful transactions: 6/6
+
+WALDORF BALANCE (rounded down to nearest integer): 850
 ```
 
 ---
